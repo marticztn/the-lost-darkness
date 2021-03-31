@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 2560
     height: 1357
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 763}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_MinSize: {x: 719, y: 713}
   m_MaxSize: {x: 14002, y: 18063}
   vertical: 0
-  controlID: 24453
+  controlID: 90
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 443, y: 713}
   m_MaxSize: {x: 10001, y: 18063}
   vertical: 1
-  controlID: 24454
+  controlID: 20
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 443, y: 442}
   m_MaxSize: {x: 8003, y: 8042}
   vertical: 0
-  controlID: 24455
+  controlID: 21
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_MinSize: {x: 241, y: 442}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 24530
+  controlID: 124
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -387,7 +387,7 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
     m_HSlider: 0
-    m_VSlider: 0
+    m_VSlider: 1
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
@@ -400,7 +400,7 @@ MonoBehaviour:
       y: 21
       width: 1406
       height: 763
-    m_Scale: {x: 0.35324073, y: 0.35324073}
+    m_Scale: {x: 0.36296296, y: 0.36296296}
     m_Translation: {x: 703, y: 381.5}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -408,12 +408,12 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -1990.1443
-      y: -1080
-      width: 3980.2886
-      height: 2160
+      x: -1936.8368
+      y: -1051.0714
+      width: 3873.6736
+      height: 2102.1428
     m_MinimalGUI: 1
-  m_defaultScale: 0.35324073
+  m_defaultScale: 0.36296296
   m_LastWindowPixelSize: {x: 1406, y: 784}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
@@ -448,23 +448,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 42bb0000
-      m_LastClickedID: 47938
-      m_ExpandedIDs: 5ca2feff5addfeffaaeefeffbeeefeff60effeff6004ffff1409ffff422dffff2cc9ffff3cc9ffff44c9ffff4cc9ffff2accffff32ccffff94cdffffc4d3ffff84f8ffff3efbffffb8ac0000c2b80000eeb80000
+      m_SelectedIDs: 4e420000
+      m_LastClickedID: 16974
+      m_ExpandedIDs: 3efbffff4e420000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Battery Indicator
+        m_OriginalName: Battery Indicator
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 16918
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 9}
       m_SearchString: 
@@ -541,9 +541,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.54318595, y: 1.1406307, z: -12.338312}
+    m_Target: {x: 1.9898918, y: -0.0040832832, z: -16.134785}
     speed: 2
-    m_Value: {x: -0.54318595, y: 1.1406307, z: -12.338312}
+    m_Value: {x: 1.9898918, y: -0.0040832832, z: -16.134785}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -594,9 +594,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 20.108067
+    m_Target: 22.45364
     speed: 2
-    m_Value: 20.108067
+    m_Value: 22.45364
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -659,13 +659,13 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Fonts/Thaleah_PixelFont/Materials
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Fonts/Thaleah_PixelFont/Materials
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Baron\Desktop\My Documents\Programs\Unity\The Lost
     Darkness\the-lost-darkness\The Lost Darkness
@@ -673,9 +673,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 90430000
-    m_LastClickedID: 17296
-    m_ExpandedIDs: 000000009043000092430000944300009643000098430000f44300004445000000ca9a3b
+    m_SelectedIDs: b2440000
+    m_LastClickedID: 17586
+    m_ExpandedIDs: 00000000a8430000aa430000ac430000ae430000b04300000644000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -703,7 +703,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000904300009243000094430000964300009843000000ca9a3b
+    m_ExpandedIDs: 00000000a8430000aa430000ac430000ae430000b0430000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
