@@ -41,17 +41,14 @@ TagManager:
   - name: Background
     uniqueID: 482814359
     locked: 0
+  - name: Foreground
+    uniqueID: 246144971
+    locked: 0
   - name: Platforms
     uniqueID: 497981011
     locked: 0
   - name: Player
     uniqueID: 3589779471
-    locked: 0
-  - name: Shadows
-    uniqueID: 760770369
-    locked: 0
-  - name: Foreground
-    uniqueID: 246144971
     locked: 0
   - name: Default
     uniqueID: 0
