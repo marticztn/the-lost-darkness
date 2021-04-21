@@ -87,6 +87,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.name.Contains("Spike"))
+        {
+            SceneManager.LoadScene("Level 1");
+        }
+    }
+
     private bool IsGrounded()
     {
         Color[] rayColor = new Color[3];
