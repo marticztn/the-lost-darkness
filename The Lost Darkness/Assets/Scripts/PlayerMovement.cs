@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,12 +15,23 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip footStep3;
     public AudioClip footStep4;
 
+    public GameObject flashLightObject;
+    public GameObject batteryIndicatorObject;
+
+    private Light flashLight;
+
     public float movementSpeed = 6f;
     public float jumpForce = 10f;
+
+    private float battery = 5.0f;
+    private float batteryDrainSpeed = 2f;
+    private float flashLightFadeSpeed = 5f;
+    private float flashLightMaxBrightness = 10f;
 
     private float horizontalMovement;
     private Rigidbody2D body;
     private BoxCollider2D collider;
+    private TextMeshProUGUI batteryText;
     AudioSource audioSource;
 
     private void Start()
@@ -27,6 +39,11 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
         audioSource = GetComponent<AudioSource>();
+        batteryText = batteryIndicatorObject.GetComponent<TextMeshProUGUI>();
+        flashLight = flashLightObject.GetComponent<Light>();
+
+        flashLight.intensity = 0f;
+        batteryText.text = "BATTERY: " + (int) battery + "%";
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -52,12 +69,50 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalMovement = Input.GetAxisRaw("Horizontal");
 
-        if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
+        if (IsGrounded() && Input.GetKeyDown(KeyCode.UpArrow))
         {
             audioSource.PlayOneShot(jumpVoice, 1.0f);
             audioSource.PlayOneShot(jumpSFX, 1.0f);
             body.velocity = Vector2.up * jumpForce;
         }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            if ((int) battery != 0)
+            {
+                StartCoroutine(wait(1f));
+                while (flashLight.intensity <= 16f)
+                {
+                    flashLight.intensity += Time.deltaTime * flashLightFadeSpeed;
+                }
+                battery -= Time.deltaTime * batteryDrainSpeed;
+                batteryText.text = "BATTERY: " + (int) battery + "%";
+            }
+
+            else
+            {
+                while (flashLight.intensity >= 0f)
+                {
+                    flashLight.intensity -= Time.deltaTime * flashLightFadeSpeed;
+                }
+
+                batteryText.color = Color.red;
+            }
+
+        }
+
+        else
+        {
+            while (flashLight.intensity >= 0f)
+            {
+                flashLight.intensity -= Time.deltaTime * flashLightFadeSpeed;
+            }
+        }
+    }
+
+    IEnumerator wait(float seconds)
+    {
+        yield return new WaitForSeconds(3f);
     }
 
     private void playFootSteps()
