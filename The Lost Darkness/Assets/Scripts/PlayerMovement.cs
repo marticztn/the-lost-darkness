@@ -18,20 +18,20 @@ public class PlayerMovement : MonoBehaviour
     public GameObject flashLightObject;
     public GameObject batteryIndicatorObject;
 
-    private Light flashLight;
 
     public float movementSpeed = 6f;
     public float jumpForce = 10f;
 
-    private float battery = 5.0f;
+    private float battery = 100f;
     private float batteryDrainSpeed = 2f;
-    private float flashLightFadeSpeed = 5f;
-    private float flashLightMaxBrightness = 10f;
+    private float flashLightFadeSpeed = 50f;
+    private float flashLightMaxBrightness = 12f;
 
     private float horizontalMovement;
     private Rigidbody2D body;
     private BoxCollider2D collider;
     private TextMeshProUGUI batteryText;
+    private Light flashLight;
     AudioSource audioSource;
 
     private void Start()
@@ -80,21 +80,18 @@ public class PlayerMovement : MonoBehaviour
         {
             if ((int) battery != 0)
             {
-                StartCoroutine(wait(1f));
-                while (flashLight.intensity <= 16f)
-                {
+                if (flashLight.intensity <= flashLightMaxBrightness)
                     flashLight.intensity += Time.deltaTime * flashLightFadeSpeed;
-                }
+
+                StartCoroutine(wait(1f));
                 battery -= Time.deltaTime * batteryDrainSpeed;
                 batteryText.text = "BATTERY: " + (int) battery + "%";
             }
 
             else
             {
-                while (flashLight.intensity >= 0f)
-                {
+                if (flashLight.intensity >= 0)
                     flashLight.intensity -= Time.deltaTime * flashLightFadeSpeed;
-                }
 
                 batteryText.color = Color.red;
             }
@@ -103,10 +100,8 @@ public class PlayerMovement : MonoBehaviour
 
         else
         {
-            while (flashLight.intensity >= 0f)
-            {
+            if (flashLight.intensity >= 0)
                 flashLight.intensity -= Time.deltaTime * flashLightFadeSpeed;
-            }
         }
     }
 
