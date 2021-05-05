@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 using TMPro;
 
 public class PlayerMovement : MonoBehaviour
@@ -15,23 +15,13 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip footStep3;
     public AudioClip footStep4;
 
-    public GameObject flashLightObject;
-    public GameObject batteryIndicatorObject;
-
-
     public float movementSpeed = 6f;
     public float jumpForce = 10f;
-
-    private float battery = 100f;
-    private float batteryDrainSpeed = 2f;
-    private float flashLightFadeSpeed = 50f;
-    private float flashLightMaxBrightness = 12f;
 
     private float horizontalMovement;
     private Rigidbody2D body;
     private BoxCollider2D collider;
-    private TextMeshProUGUI batteryText;
-    private Light flashLight;
+
     AudioSource audioSource;
 
     private void Start()
@@ -39,20 +29,6 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
         audioSource = GetComponent<AudioSource>();
-        batteryText = batteryIndicatorObject.GetComponent<TextMeshProUGUI>();
-        flashLight = flashLightObject.GetComponent<Light>();
-
-        flashLight.intensity = 0f;
-        batteryText.text = "BATTERY: " + (int) battery + "%";
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        // Save player data before entering a new scene
-        SavePlayer();
-
-        // Change is needed here, since the other collider can be NPCs
-        SceneManager.LoadScene(other.name);
     }
 
     private void FixedUpdate()
@@ -75,39 +51,6 @@ public class PlayerMovement : MonoBehaviour
             audioSource.PlayOneShot(jumpSFX, 1.0f);
             body.velocity = Vector2.up * jumpForce;
         }
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            if ((int) battery != 0)
-            {
-                if (flashLight.intensity <= flashLightMaxBrightness)
-                    flashLight.intensity += Time.deltaTime * flashLightFadeSpeed;
-
-                StartCoroutine(wait(1f));
-                battery -= Time.deltaTime * batteryDrainSpeed;
-                batteryText.text = "BATTERY: " + (int) battery + "%";
-            }
-
-            else
-            {
-                if (flashLight.intensity >= 0)
-                    flashLight.intensity -= Time.deltaTime * flashLightFadeSpeed;
-
-                batteryText.color = Color.red;
-            }
-
-        }
-
-        else
-        {
-            if (flashLight.intensity >= 0)
-                flashLight.intensity -= Time.deltaTime * flashLightFadeSpeed;
-        }
-    }
-
-    IEnumerator wait(float seconds)
-    {
-        yield return new WaitForSeconds(3f);
     }
 
     private void playFootSteps()
@@ -137,14 +80,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.name.Contains("Spike"))
-        {
-            SceneManager.LoadScene("Level 1");
-        }
-    }
-
     private bool IsGrounded()
     {
         Color[] rayColor = new Color[3];
@@ -154,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(collider.bounds.center.x - collider.bounds.extents.x, collider.bounds.center.y), Vector2.down, collider.bounds.extents.y + heightOffset, platformLayerMask);
         RaycastHit2D hitRight = Physics2D.Raycast(new Vector2(collider.bounds.center.x + collider.bounds.extents.x, collider.bounds.center.y), Vector2.down, collider.bounds.extents.y + heightOffset, platformLayerMask);
 
-        if(hitMid.collider != null) 
+        if (hitMid.collider != null) 
             rayColor[0] = Color.green;
         else 
             rayColor[0] = Color.red;
@@ -177,21 +112,5 @@ public class PlayerMovement : MonoBehaviour
             return true;
 
         return false;
-    }
-
-    public void SavePlayer()
-    {
-        SaveSystem.SavePlayer(this);
-    }
-
-    public void LoadPlayer()
-    {
-        PlayerData data = SaveSystem.LoadPlayer();
-
-        Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
-        transform.position = position;
     }
 }

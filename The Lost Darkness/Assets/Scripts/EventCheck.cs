@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class EventCheck : MonoBehaviour
 {
@@ -63,6 +64,8 @@ public class EventCheck : MonoBehaviour
 
     IEnumerator taskFinished()
     {
+        PlayerPrefs.SetInt("tasks", 1);
+
         audioSource.PlayOneShot(taskCompleted, 0.7f);
         yield return new WaitWhile(() => audioSource.isPlaying);
         SceneManager.LoadScene("Level 1");
